@@ -12,12 +12,14 @@ import com.example.hiltdemo.di.USER_SCOPE_ID
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class UserActivity : ComponentActivity() {
 
     private val userScope = getKoin().getScope(USER_SCOPE_ID)
 
-    private val userRepository: UserRepository by userScope.inject()
+    private val userRepository: UserRepository
+            by userScope.inject(parameters = { parametersOf(1234L) })
 
     private val singletonRepository: SingletonRepository by inject()
 
