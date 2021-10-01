@@ -1,7 +1,7 @@
 package com.example.hiltdemo.di
 
-import com.example.hiltdemo.data.MainRepository
-import com.example.hiltdemo.data.MainRepositoryImpl
+import com.example.hiltdemo.data.SingletonRepository
+import com.example.hiltdemo.data.SingletonRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +14,5 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideMainRepository(): MainRepository = MainRepositoryImpl()
+    fun provideSingletonRepository(): SingletonRepository = SingletonRepositoryImpl()
 }

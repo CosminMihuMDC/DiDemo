@@ -1,3 +1,3 @@
 package com.example.hiltdemo.data
 
-interface MainRepository
+interface SingletonRepository
