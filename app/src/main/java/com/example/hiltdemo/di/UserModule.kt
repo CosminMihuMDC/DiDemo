@@ -10,6 +10,6 @@ const val USER_SCOPE_ID = "userScope_id"
 val userModule = module {
 
     scope(named("userScope")) {
-        scoped<UserRepository> { (session: Long) -> UserRepositoryImpl(session) }
+        scoped<UserRepository> { UserRepositoryImpl(id.toLong()) }
     }
 }
