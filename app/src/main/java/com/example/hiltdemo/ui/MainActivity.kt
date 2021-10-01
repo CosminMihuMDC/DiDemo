@@ -14,7 +14,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.hiltdemo.activities.Activity1
 import com.example.hiltdemo.activities.Activity2
-import com.example.hiltdemo.activities.UserActivity
+import com.example.hiltdemo.activities.LoginActivity
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,7 +52,7 @@ fun Greeting(name: String) {
 
 
         Button(onClick = {
-            context.startActivity(Intent(context, UserActivity::class.java))
+            context.startActivity(Intent(context, LoginActivity::class.java))
         }) {
             Text("User Activity")
         }
