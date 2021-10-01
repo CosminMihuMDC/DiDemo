@@ -1,11 +1,13 @@
 package com.example.hiltdemo.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.ui.platform.LocalContext
 import com.example.hiltdemo.di.UserComponentManager
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +25,8 @@ class LoginActivity : ComponentActivity() {
 
         setContent {
             HiltDemoTheme {
+                val context = LocalContext.current
+
                 Column {
                     Button(onClick = {
                         userComponentManager.start(Random.nextLong())
@@ -34,6 +38,13 @@ class LoginActivity : ComponentActivity() {
                         userComponentManager.stop()
                     }) {
                         Text("Logout")
+                    }
+
+
+                    Button(onClick = {
+                        context.startActivity(Intent(context, UserActivity::class.java))
+                    }) {
+                        Text("User Activity")
                     }
                 }
             }

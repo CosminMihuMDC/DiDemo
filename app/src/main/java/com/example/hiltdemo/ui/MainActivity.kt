@@ -54,7 +54,7 @@ fun Greeting(name: String) {
         Button(onClick = {
             context.startActivity(Intent(context, LoginActivity::class.java))
         }) {
-            Text("User Activity")
+            Text("Login Activity")
         }
     }
 
