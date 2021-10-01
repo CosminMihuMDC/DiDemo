@@ -2,17 +2,10 @@ package com.example.hiltdemo.di
 
 import com.example.hiltdemo.data.SingletonRepository
 import com.example.hiltdemo.data.SingletonRepositoryImpl
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-object SingletonDataModule {
+val singletonDataModule = module {
 
-    @Provides
-    @Singleton
-    fun provideSingletonRepository(): SingletonRepository = SingletonRepositoryImpl()
+    // single instance of HelloRepository
+    single<SingletonRepository> { SingletonRepositoryImpl() }
 }

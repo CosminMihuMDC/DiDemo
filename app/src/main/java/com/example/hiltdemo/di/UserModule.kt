@@ -2,16 +2,14 @@ package com.example.hiltdemo.di
 
 import com.example.hiltdemo.data.UserRepository
 import com.example.hiltdemo.data.UserRepositoryImpl
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-@Module
-@InstallIn(UserComponent::class)
-class UserModule {
+const val USER_SCOPE_ID = "userScope_id"
 
-    @Provides
-    @UserScope // return same instance in user scope.
-    fun provideUserRepository(userId: Long): UserRepository = UserRepositoryImpl(userId)
+val userModule = module {
 
+    scope(named("userScope")) {
+        scoped<UserRepository> { (session: Long) -> UserRepositoryImpl(session) }
+    }
 }

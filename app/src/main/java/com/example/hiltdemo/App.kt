@@ -3,17 +3,32 @@ package com.example.hiltdemo
 import android.app.Application
 import android.util.Log
 import com.example.hiltdemo.data.SingletonRepository
-import dagger.hilt.android.HiltAndroidApp
-import javax.inject.Inject
+import com.example.hiltdemo.di.activityDataModule
+import com.example.hiltdemo.di.singletonDataModule
+import com.example.hiltdemo.di.userModule
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.GlobalContext.startKoin
 
-@HiltAndroidApp
 class App : Application() {
 
-    @Inject
-    lateinit var singletonRepository: SingletonRepository
+    private val singletonRepository: SingletonRepository by inject()
 
     override fun onCreate() {
         super.onCreate()
+
+        startKoin {
+            androidLogger()
+            androidContext(this@App)
+            modules(
+                singletonDataModule,
+                activityDataModule,
+                userModule
+            )
+        }
+
+
         Log.d("hilt-demo", "-------")
 
         Log.d("hilt-demo", "App hash: ${this.hashCode()}")

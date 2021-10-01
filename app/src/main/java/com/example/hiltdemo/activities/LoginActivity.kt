@@ -8,17 +8,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.ui.platform.LocalContext
-import com.example.hiltdemo.di.UserComponentManager
+import com.example.hiltdemo.di.USER_SCOPE_ID
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
-import kotlin.random.Random
+import org.koin.android.ext.android.getKoin
+import org.koin.core.qualifier.named
 
-@AndroidEntryPoint
 class LoginActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var userComponentManager: UserComponentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +24,13 @@ class LoginActivity : ComponentActivity() {
 
                 Column {
                     Button(onClick = {
-                        userComponentManager.start(Random.nextLong())
+                        getKoin().createScope(USER_SCOPE_ID, named("userScope"))
                     }) {
                         Text("Login")
                     }
 
                     Button(onClick = {
-                        userComponentManager.stop()
+                        getKoin().deleteScope(USER_SCOPE_ID)
                     }) {
                         Text("Logout")
                     }

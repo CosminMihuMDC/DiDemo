@@ -7,21 +7,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import com.example.hiltdemo.data.SingletonRepository
-import com.example.hiltdemo.di.UserComponentEntryPoint
-import com.example.hiltdemo.di.UserComponentManager
+import com.example.hiltdemo.data.UserRepository
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
-import dagger.hilt.EntryPoints
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class UserActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var userComponentManager: UserComponentManager
+    private val userRepository: UserRepository by inject()
 
-    @Inject
-    lateinit var singletonRepository: SingletonRepository
+    private val singletonRepository: SingletonRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +24,6 @@ class UserActivity : ComponentActivity() {
             "hilt-demo",
             "user activity singleton repository hash: ${singletonRepository.hashCode()}"
         )
-
-        val userRepository =
-            EntryPoints.get(userComponentManager, UserComponentEntryPoint::class.java)
-                .getUserRepository()
 
         Log.d("hilt-demo", "user activity user repository hash: ${userRepository.hashCode()}")
 
@@ -44,15 +34,5 @@ class UserActivity : ComponentActivity() {
                 }
             }
         }
-
-        val userScopeSingletonRepository =
-            EntryPoints.get(userComponentManager, UserComponentEntryPoint::class.java)
-                .getSingletonRepository()
-
-        Log.d(
-            "hilt-demo",
-            "user activity user scope singleton repository hash: ${userScopeSingletonRepository.hashCode()}"
-        )
-
     }
 }

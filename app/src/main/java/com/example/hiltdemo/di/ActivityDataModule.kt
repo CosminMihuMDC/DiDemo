@@ -1,19 +1,13 @@
 package com.example.hiltdemo.di
 
+import android.app.Activity
 import com.example.hiltdemo.data.ActivityRepository
 import com.example.hiltdemo.data.ActivityRepositoryImpl
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.scopes.ActivityScoped
-import javax.inject.Singleton
+import org.koin.dsl.module
 
-@Module
-@InstallIn(ActivityComponent::class)
-object ActivityDataModule {
+val activityDataModule = module {
 
-    @Provides
-    @ActivityScoped
-    fun provideActivityRepository(): ActivityRepository = ActivityRepositoryImpl()
+    scope<Activity> {
+        scoped<ActivityRepository> { ActivityRepositoryImpl() }
+    }
 }

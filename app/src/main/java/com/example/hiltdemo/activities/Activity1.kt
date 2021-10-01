@@ -5,17 +5,13 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import com.example.hiltdemo.data.ActivityRepository
 import com.example.hiltdemo.data.SingletonRepository
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class Activity1 : ComponentActivity() {
 
-    @Inject
-    lateinit var singletonRepository: SingletonRepository
+    private val singletonRepository: SingletonRepository by inject()
 
-    @Inject
-    lateinit var activityRepository: ActivityRepository
+    private val activityRepository: ActivityRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
