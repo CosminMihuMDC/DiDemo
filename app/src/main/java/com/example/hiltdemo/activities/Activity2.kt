@@ -19,6 +19,7 @@ class Activity2 : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("hilt-demo", "-------")
 
         Log.d("hilt-demo", "activity 2 hash: ${this.hashCode()}")
         Log.d("hilt-demo", "activity 2 singleton repository hash: ${singletonRepository.hashCode()}")
