@@ -13,6 +13,5 @@ import javax.inject.Singleton
 object ActivityDataModule {
 
     @Provides
-    @Singleton
     fun provideActivityRepository(): ActivityRepository = ActivityRepositoryImpl()
 }
