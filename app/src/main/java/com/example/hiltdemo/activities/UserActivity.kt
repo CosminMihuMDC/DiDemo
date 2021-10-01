@@ -1,6 +1,7 @@
 package com.example.hiltdemo.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -15,7 +16,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class UserActivity : ComponentActivity() {
 
-
     @Inject
     lateinit var userComponentManager: UserComponentManager
 
@@ -26,6 +26,8 @@ class UserActivity : ComponentActivity() {
             userComponentManager.userComponent,
             UserComponentEntryPoint::class.java
         ).getUserRepository()
+
+        Log.d("hilt-demo", "user activity user repository hash: ${userRepository.hashCode()}")
 
         setContent {
             HiltDemoTheme {
