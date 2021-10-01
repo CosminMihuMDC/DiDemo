@@ -2,6 +2,7 @@ package com.example.hiltdemo.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -25,11 +26,13 @@ class LoginActivity : ComponentActivity() {
                 Column {
                     Button(onClick = {
                         getKoin().createScope(USER_SCOPE_ID, named("userScope"))
+                        Log.d("hilt-demo", "create scope id: $USER_SCOPE_ID")
                     }) {
                         Text("Login")
                     }
 
                     Button(onClick = {
+                        Log.d("hilt-demo", "delete scope id: $USER_SCOPE_ID")
                         getKoin().deleteScope(USER_SCOPE_ID)
                     }) {
                         Text("Logout")
