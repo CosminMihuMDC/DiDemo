@@ -1,6 +1,7 @@
 package com.example.hiltdemo.di
 
 import android.util.Log
+import com.example.hiltdemo.data.SingletonRepository
 import com.example.hiltdemo.data.UserRepository
 import com.example.hiltdemo.data.UserRepositoryImpl
 import dagger.BindsInstance
@@ -36,6 +37,8 @@ interface UserComponentBuilder {
 interface UserComponentEntryPoint {
 
     fun getUserRepository(): UserRepository
+
+    fun getSingletonRepository(): SingletonRepository
 }
 
 @Singleton

@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
+import com.example.hiltdemo.data.SingletonRepository
 import com.example.hiltdemo.di.UserComponentEntryPoint
 import com.example.hiltdemo.di.UserComponentManager
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
@@ -19,8 +20,13 @@ class UserActivity : ComponentActivity() {
     @Inject
     lateinit var userComponentManager: UserComponentManager
 
+    @Inject
+    lateinit var singletonRepository: SingletonRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("hilt-demo", "user activity singleton repository hash: ${singletonRepository.hashCode()}")
 
         val userRepository = EntryPoints.get(
             userComponentManager.userComponent,
@@ -36,5 +42,13 @@ class UserActivity : ComponentActivity() {
                 }
             }
         }
+
+        val userScopeSingletonRepository = EntryPoints.get(
+            userComponentManager.userComponent,
+            UserComponentEntryPoint::class.java
+        ).getSingletonRepository()
+
+        Log.d("hilt-demo", "user activity user scope singleton repository hash: ${userScopeSingletonRepository.hashCode()}")
+
     }
 }
