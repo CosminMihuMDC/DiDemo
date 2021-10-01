@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HiltDemo">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -21,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activities.Activity1" />
+        <activity android:name=".activities.Activity2" />
+
     </application>
 
 </manifest>

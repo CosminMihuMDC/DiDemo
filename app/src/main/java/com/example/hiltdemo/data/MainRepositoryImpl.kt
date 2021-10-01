@@ -1,3 +1,3 @@
-package com.example.hiltdemo
+package com.example.hiltdemo.data
 
 class MainRepositoryImpl : MainRepository

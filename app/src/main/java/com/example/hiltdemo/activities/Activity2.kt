@@ -1,4 +1,4 @@
-package com.example.hiltdemo
+package com.example.hiltdemo.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,33 +6,27 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.hiltdemo.data.MainRepository
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
+import javax.inject.Inject
 
-class MainActivity : ComponentActivity() {
+class Activity2 : ComponentActivity() {
+
+    @Inject
+    lateinit var repository: MainRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             HiltDemoTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+
+                    Text("activity 2 hash: ${this.hashCode()}")
+                    Text("repository hash: ${repository.hashCode()}")
+
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    HiltDemoTheme {
-        Greeting("Android")
     }
 }
