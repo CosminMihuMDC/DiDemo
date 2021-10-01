@@ -7,39 +7,47 @@ import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.DefineComponent
+import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 import javax.inject.Scope
+import javax.inject.Singleton
 
 @Scope
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 annotation class UserScope
 
-@DefineComponent(parent = ActivityComponent::class)
+@DefineComponent(parent = SingletonComponent::class)
 @UserScope
 interface UserComponent
 
 @DefineComponent.Builder
 interface UserComponentBuilder {
 
-    fun session(@BindsInstance session: Long): UserComponentBuilder
+    fun setSession(@BindsInstance session: Long): UserComponentBuilder
 
     fun build(): UserComponent
 }
 
-@ActivityScoped
+@EntryPoint
+@InstallIn(UserComponent::class)
+interface UserComponentEntryPoint {
+
+    fun getUserRepository(): UserRepository
+}
+
+@Singleton
 class UserComponentManager @Inject constructor(
     private val userComponentBuilder: UserComponentBuilder
 ) {
 
-    private var userComponent: UserComponent? = null
+    var userComponent: UserComponent? = null
 
     fun start(session: Long) {
         if (userComponent == null) {
-            userComponent = userComponentBuilder.session(session).build()
+            userComponent = userComponentBuilder.setSession(session).build()
             Log.d("hilt-demo", "create userComponent hash: ${userComponent.hashCode()}")
         }
     }
