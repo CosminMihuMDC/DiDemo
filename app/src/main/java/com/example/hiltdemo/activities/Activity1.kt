@@ -6,8 +6,13 @@ import androidx.activity.ComponentActivity
 import com.example.hiltdemo.data.ActivityRepository
 import com.example.hiltdemo.data.SingletonRepository
 import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.activityScope
+import org.koin.core.scope.Scope
 
-class Activity1 : ComponentActivity() {
+class Activity1 : ComponentActivity(), AndroidScopeComponent {
+
+    override val scope: Scope by activityScope()
 
     private val singletonRepository: SingletonRepository by inject()
 
@@ -18,7 +23,10 @@ class Activity1 : ComponentActivity() {
         Log.d("hilt-demo", "-------")
 
         Log.d("hilt-demo", "activity 1 hash: ${this.hashCode()}")
-        Log.d("hilt-demo", "activity 1 singleton repository hash: ${singletonRepository.hashCode()}")
+        Log.d(
+            "hilt-demo",
+            "activity 1 singleton repository hash: ${singletonRepository.hashCode()}"
+        )
         Log.d("hilt-demo", "activity 1 activity repository hash: ${activityRepository.hashCode()}")
     }
 }
