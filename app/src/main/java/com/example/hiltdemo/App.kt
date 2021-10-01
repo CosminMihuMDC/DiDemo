@@ -10,6 +10,7 @@ import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
+import org.koin.core.logger.Level
 
 class App : Application() {
 
@@ -19,7 +20,7 @@ class App : Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger()
+            androidLogger(Level.DEBUG)
             androidContext(this@App)
             modules(
                 singletonDataModule,
