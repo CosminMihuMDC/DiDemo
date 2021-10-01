@@ -15,7 +15,9 @@ import org.koin.android.ext.android.inject
 
 class UserActivity : ComponentActivity() {
 
-    private val userRepository: UserRepository by getKoin().getScope(USER_SCOPE_ID).inject()
+    private val userScope = getKoin().getScope(USER_SCOPE_ID)
+
+    private val userRepository: UserRepository by userScope.inject()
 
     private val singletonRepository: SingletonRepository by inject()
 
