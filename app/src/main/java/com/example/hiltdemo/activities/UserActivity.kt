@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import com.example.hiltdemo.data.SingletonRepository
 import com.example.hiltdemo.data.UserRepository
+import com.example.hiltdemo.di.USER_SCOPE_ID
 import com.example.hiltdemo.ui.theme.HiltDemoTheme
+import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 
 class UserActivity : ComponentActivity() {
 
-    private val userRepository: UserRepository by inject()
+    private val userRepository: UserRepository by getKoin().getScope(USER_SCOPE_ID).inject()
 
     private val singletonRepository: SingletonRepository by inject()
 
