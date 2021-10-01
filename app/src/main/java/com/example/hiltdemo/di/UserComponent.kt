@@ -3,14 +3,12 @@ package com.example.hiltdemo.di
 import android.util.Log
 import com.example.hiltdemo.data.SingletonRepository
 import com.example.hiltdemo.data.UserRepository
-import com.example.hiltdemo.data.UserRepositoryImpl
 import dagger.BindsInstance
-import dagger.Module
-import dagger.Provides
 import dagger.hilt.DefineComponent
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.internal.GeneratedComponentManager
 import javax.inject.Inject
 import javax.inject.Scope
 import javax.inject.Singleton
@@ -27,6 +25,7 @@ interface UserComponent
 @DefineComponent.Builder
 interface UserComponentBuilder {
 
+    // Create new user scope with session.
     fun setSession(@BindsInstance session: Long): UserComponentBuilder
 
     fun build(): UserComponent
@@ -36,17 +35,19 @@ interface UserComponentBuilder {
 @InstallIn(UserComponent::class)
 interface UserComponentEntryPoint {
 
+    // get from UserModule.
     fun getUserRepository(): UserRepository
 
+    // get from parent singleton component.
     fun getSingletonRepository(): SingletonRepository
 }
 
 @Singleton
 class UserComponentManager @Inject constructor(
     private val userComponentBuilder: UserComponentBuilder
-) {
+) : GeneratedComponentManager<UserComponent> {
 
-    var userComponent: UserComponent? = null
+    private var userComponent: UserComponent? = null
 
     fun start(session: Long) {
         if (userComponent == null) {
@@ -61,5 +62,7 @@ class UserComponentManager @Inject constructor(
             userComponent = null
         }
     }
+
+    override fun generatedComponent() = userComponent
 
 }

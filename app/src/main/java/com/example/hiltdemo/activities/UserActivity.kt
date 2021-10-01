@@ -26,12 +26,14 @@ class UserActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.d("hilt-demo", "user activity singleton repository hash: ${singletonRepository.hashCode()}")
+        Log.d(
+            "hilt-demo",
+            "user activity singleton repository hash: ${singletonRepository.hashCode()}"
+        )
 
-        val userRepository = EntryPoints.get(
-            userComponentManager.userComponent,
-            UserComponentEntryPoint::class.java
-        ).getUserRepository()
+        val userRepository =
+            EntryPoints.get(userComponentManager, UserComponentEntryPoint::class.java)
+                .getUserRepository()
 
         Log.d("hilt-demo", "user activity user repository hash: ${userRepository.hashCode()}")
 
@@ -43,12 +45,14 @@ class UserActivity : ComponentActivity() {
             }
         }
 
-        val userScopeSingletonRepository = EntryPoints.get(
-            userComponentManager.userComponent,
-            UserComponentEntryPoint::class.java
-        ).getSingletonRepository()
+        val userScopeSingletonRepository =
+            EntryPoints.get(userComponentManager, UserComponentEntryPoint::class.java)
+                .getSingletonRepository()
 
-        Log.d("hilt-demo", "user activity user scope singleton repository hash: ${userScopeSingletonRepository.hashCode()}")
+        Log.d(
+            "hilt-demo",
+            "user activity user scope singleton repository hash: ${userScopeSingletonRepository.hashCode()}"
+        )
 
     }
 }

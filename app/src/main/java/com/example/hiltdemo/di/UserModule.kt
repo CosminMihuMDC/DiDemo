@@ -11,7 +11,7 @@ import dagger.hilt.InstallIn
 class UserModule {
 
     @Provides
-    @UserScope
+    @UserScope // return same instance in user scope.
     fun provideUserRepository(userId: Long): UserRepository = UserRepositoryImpl(userId)
 
 }
