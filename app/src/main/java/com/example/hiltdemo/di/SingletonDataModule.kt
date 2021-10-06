@@ -15,4 +15,17 @@ object SingletonDataModule {
     @Provides
     @Singleton
     fun provideSingletonRepository(): SingletonRepository = SingletonRepositoryImpl()
+
+    // class SingletonRepositoryImpl: SingletonRepository
 }
+
+//@Module
+//@InstallIn(SingletonComponent::class)
+//abstract class SingletonDataModule {
+//
+//    @Binds
+//    @Singleton
+//    abstract fun bindSingletonRepository(impl: SingletonRepositoryImpl): SingletonRepository
+//
+//    // class SingletonRepositoryImpl @Inject constructor(): SingletonRepository
+//}
