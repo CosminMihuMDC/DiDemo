@@ -52,13 +52,13 @@ class UserComponentManager @Inject constructor(
     fun start(session: Long) {
         if (userComponent == null) {
             userComponent = userComponentBuilder.setSession(session).build()
-            Log.d("hilt-demo", "create userComponent hash: ${userComponent.hashCode()}")
+            Log.d("di-demo", "create userComponent hash: ${userComponent.hashCode()}")
         }
     }
 
     fun stop() {
         if (userComponent != null) {
-            Log.d("hilt-demo", "destroy userComponent hash: ${userComponent.hashCode()}")
+            Log.d("di-demo", "destroy userComponent hash: ${userComponent.hashCode()}")
             userComponent = null
         }
     }

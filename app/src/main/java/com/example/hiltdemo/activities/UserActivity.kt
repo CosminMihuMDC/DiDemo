@@ -35,7 +35,7 @@ class UserActivity : ComponentActivity() {
             EntryPoints.get(userComponentManager, UserComponentEntryPoint::class.java)
                 .getUserRepository()
 
-        Log.d("hilt-demo", "user activity user repository hash: ${userRepository.hashCode()}")
+        Log.d("di-demo", "user activity user repository hash: ${userRepository.hashCode()}")
 
         setContent {
             HiltDemoTheme {
