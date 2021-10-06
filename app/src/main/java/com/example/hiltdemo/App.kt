@@ -30,9 +30,9 @@ class App : Application() {
         }
 
 
-        Log.d("hilt-demo", "-------")
+        Log.d("di-demo", "-------")
 
-        Log.d("hilt-demo", "App hash: ${this.hashCode()}")
-        Log.d("hilt-demo", "App singleton repository hash: ${singletonRepository.hashCode()}")
+        Log.d("di-demo", "App hash: ${this.hashCode()}")
+        Log.d("di-demo", "App singleton repository hash: ${singletonRepository.hashCode()}")
     }
 }

@@ -33,7 +33,7 @@ class UserActivity : ComponentActivity(), KoinScopeComponent {
             "user activity singleton repository hash: ${singletonRepository.hashCode()}"
         )
 
-        Log.d("hilt-demo", "user activity user repository hash: ${userRepository.hashCode()}")
+        Log.d("di-demo", "user activity user repository hash: ${userRepository.hashCode()}")
 
         setContent {
             HiltDemoTheme {
@@ -45,6 +45,6 @@ class UserActivity : ComponentActivity(), KoinScopeComponent {
 
         val sameRepoWithoutParams = get<UserRepository>()
 
-        Log.d("hilt-demo", "user activity user same repository hash: ${sameRepoWithoutParams.hashCode()}")
+        Log.d("di-demo", "user activity user same repository hash: ${sameRepoWithoutParams.hashCode()}")
     }
 }

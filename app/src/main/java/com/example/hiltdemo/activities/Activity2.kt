@@ -20,10 +20,10 @@ class Activity2 : ComponentActivity(), AndroidScopeComponent {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("hilt-demo", "-------")
+        Log.d("di-demo", "-------")
 
-        Log.d("hilt-demo", "activity 2 hash: ${this.hashCode()}")
-        Log.d("hilt-demo", "activity 2 singleton repository hash: ${singletonRepository.hashCode()}")
-        Log.d("hilt-demo", "activity 2 activity repository hash: ${activityRepository.hashCode()}")
+        Log.d("di-demo", "activity 2 hash: ${this.hashCode()}")
+        Log.d("di-demo", "activity 2 singleton repository hash: ${singletonRepository.hashCode()}")
+        Log.d("di-demo", "activity 2 activity repository hash: ${activityRepository.hashCode()}")
     }
 }

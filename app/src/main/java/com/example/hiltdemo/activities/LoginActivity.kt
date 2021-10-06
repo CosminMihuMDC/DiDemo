@@ -26,13 +26,13 @@ class LoginActivity : ComponentActivity() {
                 Column {
                     Button(onClick = {
                         getKoin().createScope(USER_SCOPE_ID, named("userScope"))
-                        Log.d("hilt-demo", "create scope id: $USER_SCOPE_ID")
+                        Log.d("di-demo", "create scope id: $USER_SCOPE_ID")
                     }) {
                         Text("Login")
                     }
 
                     Button(onClick = {
-                        Log.d("hilt-demo", "delete scope id: $USER_SCOPE_ID")
+                        Log.d("di-demo", "delete scope id: $USER_SCOPE_ID")
                         getKoin().deleteScope(USER_SCOPE_ID)
                     }) {
                         Text("Logout")
