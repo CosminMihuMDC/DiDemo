@@ -24,7 +24,7 @@ class Activity1 : ComponentActivity(), AndroidScopeComponent {
 
         Log.d("di-demo", "activity 1 hash: ${this.hashCode()}")
         Log.d(
-            "hilt-demo",
+            "di-demo",
             "activity 1 singleton repository hash: ${singletonRepository.hashCode()}"
         )
         Log.d("di-demo", "activity 1 activity repository hash: ${activityRepository.hashCode()}")
